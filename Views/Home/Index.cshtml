@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+   <h1>my.la.gov Ping Result</h1>
+
+<p><strong>Latency:</strong> @Model.LatencyMs ms</p>
+<p><strong>Timestamp:</strong> @Model.Timestamp</p>
+
+<form method="post" asp-action="PingAmazon">
+    <button type="submit" class="btn btn-primary">Ping Amazon</button>
+</form>
+
+</div>
+
+
