@@ -14,12 +14,10 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Log in to Azure Container Registry
-        run: echo "${{ secrets.AZURE_PASSWORD }}" | docker login ${{ secrets.AZURE_REGISTRY_NAME }} -u ${{ secrets.AZURE_USERNAME }} --password-stdin
+        run: docker login ${{ secrets.AZURE_REGISTRY_NAME }} -u ${{ secrets.AZURE_USERNAME }} -p "${{ secrets.AZURE_PASSWORD }}"
 
       - name: Build Docker image
-        run: |
-          docker build -t ${{ secrets.AZURE_REGISTRY_NAME }}/pingtestapp2:latest .
+        run: docker build -t ${{ secrets.AZURE_REGISTRY_NAME }}/pingtestapp:latest .
 
       - name: Push Docker image to ACR
-        run: |
-          docker push ${{ secrets.AZURE_REGISTRY_NAME }}/pingtestapp2:latest
+        run: docker push ${{ secrets.AZURE_REGISTRY_NAME }}/pingtestapp:latest
